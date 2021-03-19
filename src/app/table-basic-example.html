@@ -1,0 +1,106 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let element">{{element.id}}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{element.name}}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef>Last Name</th>
+    <td mat-cell *matCellDef="let element">{{element.lastName}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+<table mat-table class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let personas">{{personas.id}}</td>
+  </ng-container>
+
+</table>
+
+
+<table mat-table class="mat-elevation-z8" *ngFor="let personas of personasarray"
+  class="list-group-item list-group-item-action" (click)="OpenForEdit(personas)"
+  [class.active]="personas==SelectedPersona">
+
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>{{personas.id}}</th>
+    <td mat-cell *matCellDef="let personas">{{personas.id}}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>{{personas.name}}</th>
+    <td mat-cell *matCellDef="let personas">{{personas.name}}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef>{{personas.lastname}}</th>
+    <td mat-cell *matCellDef="let personas">{{personas.lastname}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mt-4">
+
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="card-title">
+            Insert a new Person
+          </div>
+
+          <div class="form-group">
+            <input
+              type="text"
+              [(ngModel)]="SelectedPersona.name"
+              placeholder="inserte un nombre"
+              class="form-control"
+              id=""
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              type="text"
+              [(ngModel)]="SelectedPersona.lastname"
+              placeholder="inserte un apellido"
+              class="form-control"
+              id=""
+            />
+          </div>
+
+          <button (click)="addorEdit()" class="btn btn-primary">Submit</button>
+
+          <button
+            *ngIf="SelectedPersona.id !=0"
+            (click)="delete()"
+            class="btn btn-Danger"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
